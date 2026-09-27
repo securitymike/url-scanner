@@ -112,6 +112,23 @@ RDAP needs no key. A provider without a key is reported as **"Not configured"** 
 
 Linking the Function App to the Static Web App also restricts the Function App so it only accepts traffic routed through the Static Web App. The site and API require an authenticated user from your tenant (see [frontend/staticwebapp.config.json](frontend/staticwebapp.config.json)).
 
+## Continuous deployment (GitHub Actions)
+
+[.github/workflows/deploy.yml](.github/workflows/deploy.yml) runs the tests on every push and pull request. On pushes to `main` it also deploys the Function App and the Static Web App.
+
+The workflow signs in to Azure with **OpenID Connect**, so no Azure credentials are stored in GitHub. A one-time setup creates the pipeline identity. Run it after the infrastructure exists (step 2 above):
+
+```powershell
+./scripts/setup-github-oidc.ps1 -ResourceGroup rg-urlscanner -Repo securitymike/url-scanner
+```
+
+This setup script:
+- Creates an Entra app with a federated credential that trusts only `repo:securitymike/url-scanner:ref:refs/heads/main`.
+- Grants it **Website Contributor** on the Function App and **Contributor** on the Static Web App. It gets no other access.
+- Sets the repository variables (`AZURE_CLIENT_ID`, `AZURE_TENANT_ID`, `AZURE_SUBSCRIPTION_ID`, and the resource names).
+
+The deploy job skips itself until those variables exist. Infrastructure changes (`infra/main.bicep`) are still deployed by hand with `deploy.ps1`, so the pipeline never gets permission to create role assignments.
+
 ## Configuration (Function App settings)
 
 | Setting | Default | Meaning |
