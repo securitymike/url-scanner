@@ -1,0 +1,25 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "FUNCTIONS_WORKER_RUNTIME": "node",
+
+    "KEY_VAULT_URL": "",
+
+    "GOOGLE_SAFE_BROWSING_API_KEY": "",
+    "VIRUSTOTAL_API_KEY": "",
+    "URLSCAN_API_KEY": "",
+    "URLHAUS_AUTH_KEY": "",
+    "ANTHROPIC_API_KEY": "",
+
+    "POLICY_BLOCK_FILE_SHARING": "true",
+    "POLICY_BLOCK_AI": "true",
+    "MIN_REPUTATION_SOURCES": "2",
+    "VT_MALICIOUS_THRESHOLD": "2",
+    "NEW_DOMAIN_DAYS": "30",
+    "URLSCAN_VISIBILITY": "unlisted",
+    "DIRECT_FETCH_ENABLED": "true",
+    "ANTHROPIC_MODEL": "claude-opus-5",
+    "ANTHROPIC_EFFORT": "medium"
+  }
+}

@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>URL Safety Scanner</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <div class="brand">
+        <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path fill="currentColor" d="M12 1 3 5v6c0 5.6 3.8 10.7 9 12 5.2-1.3 9-6.4 9-12V5l-9-4Zm0 2.2 7 3.1V11c0 4.5-3 8.7-7 9.9-4-1.2-7-5.4-7-9.9V6.3l7-3.1Z"/></svg>
+        <span>URL Safety Scanner</span>
+      </div>
+      <div class="user" id="user"></div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="card">
+      <h1>Check a URL</h1>
+      <p class="muted">Checks the URL against threat-intelligence sources for malicious content, and analyses the site for file sharing capability and AI usage.</p>
+      <form id="scan-form" autocomplete="off">
+        <label for="url" class="visually-hidden">URL to scan</label>
+        <input id="url" name="url" type="text" inputmode="url" placeholder="https://example.com" required maxlength="2048" spellcheck="false">
+        <button type="submit" id="scan-button">Scan URL</button>
+      </form>
+      <p class="error" id="form-error" hidden></p>
+    </section>
+
+    <section class="card" id="progress" hidden>
+      <div class="progress-head">
+        <div class="spinner" aria-hidden="true"></div>
+        <div>
+          <h2 id="progress-stage">Starting scan…</h2>
+          <p class="muted mono" id="progress-url"></p>
+        </div>
+      </div>
+      <ul class="checks" id="progress-checks"></ul>
+      <p class="muted small">Sandbox scans and fresh VirusTotal analyses can take 1–3 minutes.</p>
+    </section>
+
+    <section id="result" hidden></section>
+  </main>
+</body>
+</html>
