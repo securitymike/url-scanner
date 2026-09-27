@@ -20,5 +20,8 @@
     "durable-functions": "^3.1.0",
     "pdfkit": "^0.17.0",
     "tldts": "^7.0.0"
+  },
+  "overrides": {
+    "uuid": "^11.1.1"
   }
 }
